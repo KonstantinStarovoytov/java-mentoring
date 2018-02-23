@@ -1,0 +1,16 @@
+# Java files
+.classpath
+.project
+.settings
+.gradle/
+build/
+target/
+
+# intellij files
+.idea/
+build-idea/
+test-output/
+reports/
+*.iml
+*.ipr
+*.iws
