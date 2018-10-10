@@ -1,7 +1,7 @@
 package objects.types;
 
 import objects.Product;
-import service.Preparable;
+import objects.Preparable;
 
 public abstract class BulkProduct extends Product implements Preparable {
 
@@ -11,7 +11,7 @@ public abstract class BulkProduct extends Product implements Preparable {
 
     @Override
     public void prepare() {
-        System.out.println("Sprinkle salad with : " + getName().toLowerCase());
+        System.out.println("Sprinkle dish with : " + getName().toLowerCase());
     }
 }
 

@@ -1,80 +1,65 @@
 package service;
 
-import customException.SaladNotReadyException;
+import customException.DishNotReadyException;
 import objects.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DinnerMaker {
 
-    public <T extends Product> List<Product> makeDish(String dishName, T... ingredients) {
+    public static <T extends Product> List<Product> makeDish (String dishName, T... ingredients) {
         List<Product> dish = new ArrayList<>(ingredients.length);
         for (T ingredient : ingredients) {
-            if (ingredient instanceof Preparable)
-                ((Preparable) ingredient).prepare();
+            if (ingredient instanceof Preparable) ((Preparable) ingredient).prepare();
             dish.add(ingredient);
         }
         System.out.println(dishName + " is ready \n");
         return dish;
     }
 
-    public List<Product> makeBeetRootSalad() {
-        Potato potato = new Potato(500);
-        Parsley parsley = new Parsley(10);
-        Tomato tomato = new Tomato(300);
-        Carrot carrot = new Carrot(150);
-        Beet beet = new Beet(400);
-        beet.prepare();
-        carrot.prepare();
-        potato.prepare();
-        tomato.prepare();
-        parsley.prepare();
+    public static List<Product> makeBeetRootSalad () {
+        List<Product> dish = Arrays.asList(new Potato(500),
+                                           new Parsley(10),
+                                           new Tomato(300),
+                                           new Carrot(150),
+                                           new Beet(400));
+        dish.forEach(product -> ((Preparable) product).prepare());
         System.out.println("Beetroot salad is ready \n");
-        return Arrays.asList(potato, parsley, tomato, carrot, beet);
+        return dish;
     }
 
-    public void sortByWeight(List<Product> dish) {
-        Collections.sort(dish, (vegetable1, vegetable2) -> (int) (vegetable1.getWeightInGrams() - vegetable2.getWeightInGrams()));
+    public static void sortByWeight (List<Product> dish) {
+        dish.sort((vegetable1, vegetable2) -> (int) (vegetable1.getWeightInGrams() - vegetable2.getWeightInGrams()));
     }
 
-    public <T extends Product> String countCaloriesInSalad(List<T> dish) throws SaladNotReadyException {
-        if (dish.isEmpty()) {
-            throw new SaladNotReadyException("You salad hasn't been made yet!");
-        } else {
-            int calories = 0;
-            for (Product vegetable : dish) {
-                calories += vegetable.countCaloriesInVegetable();
-            }
-            return "dish has " + calories + " calories \n";
-        }
+    public static <T extends Product> String countCaloriesInDish (List<T> dish) throws DishNotReadyException {
+        if (dish.isEmpty()) throw new DishNotReadyException("You salad hasn't been made yet!");
+        double caloriesAmount = dish.stream().mapToDouble(Product::getWeightInGrams).sum();
+        return "dish has " + caloriesAmount + " calories \n";
     }
 
-    public void showIngredientsWithWeight(List<Product> dish) throws SaladNotReadyException {
-        if (dish.isEmpty()) {
-            throw new SaladNotReadyException("You salad hasn't been made yet!");
-        } else {
-            System.out.println("Ingredients for dish (in grams):");
-            for (Product product : dish) {
-                System.out.println(product.getName() + " = " + product.getWeightInGrams());
-            }
-        }
+    public static void showIngredientsWithWeight (List<Product> dish) throws DishNotReadyException {
+        if (dish.isEmpty()) throw new DishNotReadyException("You salad hasn't been made yet!");
+
+        System.out.println("Ingredients for dish (in grams):");
+        dish.forEach(product -> System.out.println(String.format("%s = %s", product.getName(), product.getWeightInGrams())));
     }
 
-    public void showIngredientsInWeightRange(List<Product> dish, int lowerLimit, int upperLimit) throws SaladNotReadyException {
-        if (dish.isEmpty()) {
-            throw new SaladNotReadyException("You salad hasn't been made yet!");
-        } else {
-            System.out.println("Ingredients in weight range from " + lowerLimit + " to " + upperLimit + " grams:");
-            for (Product product : dish) {
-                if (product.getWeightInGrams() > lowerLimit && product.getWeightInGrams() < upperLimit) {
-                    System.out.println(product.getName() + " " + product.getWeightInGrams());
-                }
-            }
-        }
+    public static void showIngredientsInWeightRange (List<Product> dish, int lowerLimit, int upperLimit) throws DishNotReadyException {
+        if (dish.isEmpty()) throw new DishNotReadyException("You salad hasn't been made yet!");
+
+        System.out.println("Ingredients in weight range from " + lowerLimit + " to " + upperLimit + " grams:");
+        List<Product> productsInRangeCriteria = dish.stream()
+                                                    .filter(product -> product.getWeightInGrams() > lowerLimit &&
+                                                                       product.getWeightInGrams() <= upperLimit)
+                                                    .collect(Collectors.toList());
+        if (!productsInRangeCriteria.isEmpty()) productsInRangeCriteria.forEach(
+                product -> System.out.println(String.format("%s = %s", product.getName(), product.getWeightInGrams())));
+        else System.out.println(
+                String.format("Dish doesn't contains ingredients in weight range : %s grams - %s grams", lowerLimit, upperLimit));
     }
 }
 

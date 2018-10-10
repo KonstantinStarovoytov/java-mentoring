@@ -1,7 +1,7 @@
 package objects.types;
 
 import objects.Product;
-import service.Preparable;
+import objects.Preparable;
 
 public abstract class SoftProduct extends Product implements Preparable {
 
