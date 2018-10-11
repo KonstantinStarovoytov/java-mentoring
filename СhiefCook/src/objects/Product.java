@@ -2,14 +2,17 @@ package objects;
 
 abstract public class Product {
 
+    private boolean isReady;
+
     private String name;
     private double weightInGrams;
     private int calIn100g;
 
-    public Product(String name, double weightInGrams, int calIn100g) {
+    public Product(String name, double weightInGrams, int calIn100g, boolean isReady) {
         this.weightInGrams = weightInGrams;
         this.calIn100g = calIn100g;
         this.name = name;
+        this.isReady = isReady;
     }
 
     public String getName(){
@@ -18,6 +21,14 @@ abstract public class Product {
 
     public double getWeightInGrams() {
         return weightInGrams;
+    }
+
+    public boolean isReady () {
+        return isReady;
+    }
+
+    protected void setReady (boolean ready) {
+        isReady = ready;
     }
 
     public int countCaloriesInVegetable() {

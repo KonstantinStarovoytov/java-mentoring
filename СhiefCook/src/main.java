@@ -1,25 +1,23 @@
-import objects.Beet;
-import objects.Eggs;
-import objects.Parsley;
-import objects.Potato;
+import customException.DishNotReadyException;
+import objects.*;
 
 import java.util.List;
 
 import static service.DinnerMaker.*;
 
-public class Main {
+public class main {
     public static void main(String args[]) {
         try {
             showIngredientsWithWeight(makeBeetRootSalad());
-            List eggPie = makeDish("Eggs pie", new Eggs(200), new Potato(150),new Parsley(50),new Beet(200));
+            List<Product> eggPie = makeDish("Eggs pie", new Eggs(200.5), new Potato(150), new Parsley(50.5), new Beet(200));
             System.out.println("After sorting by weight: ");
             showIngredientsWithWeight(eggPie);
             sortByWeight(eggPie);
             showIngredientsWithWeight(eggPie);
-            System.out.println(countCaloriesInDish(eggPie));;
+            System.out.println(countCaloriesInDish(eggPie));
             showIngredientsInWeightRange(eggPie,100, 400);
-        } catch (Exception e) {
-            System.out.println("You salad hasn't been made yet!");
+        } catch (DishNotReadyException e) {
+            System.out.println("You dish hasn't been made yet!");
         }
     }
 }
