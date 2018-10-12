@@ -12,6 +12,23 @@ import static java.lang.String.format;
 
 public class DinnerMaker {
 
+    public static void main(String args[]) {
+        try {
+            showIngredientsWithWeight(makeBeetRootSalad());
+            List<Product> eggPie = makeDish("Eggs pie", new Eggs(200.5), new Potato(150), new Parsley(50.5), new Beet(200));
+            System.out.println("After sorting by weight: ");
+            showIngredientsWithWeight(eggPie);
+            sortByWeight(eggPie);
+            showIngredientsWithWeight(eggPie);
+            System.out.println(countCaloriesInDish(eggPie));
+            showIngredientsInWeightRange(eggPie,100, 400);
+        } catch (DishNotReadyException e) {
+            System.out.println("You dish hasn't been made yet!");
+        }
+
+
+    }
+
     public static <T extends Product> List<Product> makeDish (String dishName, T... ingredients) {
         List<Product> dish = new ArrayList<>(ingredients.length);
         for (T ingredient : ingredients) {
@@ -34,7 +51,7 @@ public class DinnerMaker {
     }
 
     public static void sortByWeight (List<Product> dish) {
-        dish.sort((vegetable1, vegetable2) -> (int) (vegetable1.getWeightInGrams() - vegetable2.getWeightInGrams()));
+        dish.sort((vegetable1, vegetable2) -> (int) (Math.floor(vegetable1.getWeightInGrams() - vegetable2.getWeightInGrams())));
     }
 
     public static <T extends Product> String countCaloriesInDish (List<T> dish) throws DishNotReadyException {
