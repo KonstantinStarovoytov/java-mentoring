@@ -22,6 +22,7 @@ public class DinnerMaker {
             showIngredientsWithWeight(eggPie);
             System.out.println(countCaloriesInDish(eggPie));
             showIngredientsInWeightRange(eggPie,100, 400);
+
         } catch (DishNotReadyException e) {
             System.out.println("You dish hasn't been made yet!");
         }
