@@ -15,7 +15,11 @@ public class DinnerMaker {
     public static void main(String args[]) {
         try {
             showIngredientsWithWeight(makeBeetRootSalad());
-            List<Product> eggPie = makeDish("Eggs pie", new Eggs(200.5), new Potato(150), new Parsley(50.5), new Beet(200));
+            List<Product> eggPie = makeDish("Eggs pie",
+                    new Eggs(200.5),
+                    new Potato(150),
+                    new Parsley(50.5),
+                    new Beet(200));
             System.out.println("After sorting by weight: ");
             showIngredientsWithWeight(eggPie);
             sortByWeight(eggPie);
@@ -68,18 +72,19 @@ public class DinnerMaker {
         dish.forEach(product -> System.out.println(format("%s = %s grams", product.getName(), product.getWeightInGrams())));
     }
 
-    public static void showIngredientsInWeightRange (List<Product> dish, double lowerLimit, double upperLimit)
+    public static void showIngredientsInWeightRange(List<Product> dish, double lowerLimit, double upperLimit)
             throws DishNotReadyException {
         if (dish.isEmpty()) throw new DishNotReadyException("You salad hasn't been made yet!");
 
         System.out.println(format("Ingredients in weight range %s - %s grams", lowerLimit, upperLimit));
         List<Product> productsInRangeCriteria = dish.stream()
-                                                    .filter(product -> product.getWeightInGrams() > lowerLimit &&
-                                                                       product.getWeightInGrams() <= upperLimit)
-                                                    .collect(Collectors.toList());
+                .filter(product -> product.getWeightInGrams() > lowerLimit &&
+                                   product.getWeightInGrams() <= upperLimit)
+                .collect(Collectors.toList());
         if (!productsInRangeCriteria.isEmpty()) productsInRangeCriteria.forEach(
                 product -> System.out.println(format("%s = %s grams", product.getName(), product.getWeightInGrams())));
-        else System.out.println(format("Dish doesn't contains ingredients in weight range : %s grams - %s grams", lowerLimit, upperLimit));
+        else
+            System.out.println(format("Dish doesn't contains ingredients in weight range : %s grams - %s grams", lowerLimit, upperLimit));
     }
 }
 

@@ -71,20 +71,12 @@ public class DynamicArray<E> implements DynamicArrayBehavior<E> {
     }
 
     @Override
-    public void update(int index, Object o) {
-
-    }
-
-    @Override
-    public Iterator iterator() {
-        return new DynamicArrayIterator<E>(data);
+    public Iterator<E> iterator() {
+        return new DynamicArrayIterator<>(data);
     }
 
     @Override
     public String toString() {
-        return "DynamicArray{" +
-                "data=" + Arrays.toString(data) +
-                ", size=" + size +
-                '}';
+        return Arrays.toString(data);
     }
 }

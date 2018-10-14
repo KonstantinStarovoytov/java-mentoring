@@ -6,6 +6,4 @@ public interface DynamicArrayBehavior<E> extends Iterable<E> {
     E get(int index);
 
     int size();
-
-    void update(int index, E e);
 }
