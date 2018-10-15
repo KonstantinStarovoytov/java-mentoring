@@ -17,7 +17,9 @@ public class DynamicArray<E> implements DynamicArrayBehavior<E> {
         sss.add(5);
         sss.add(4);
         sss.add(2);
+        sss.add(11);
         System.out.printf(sss.toString());
+        System.out.println(sss.size);
     }
 
     private E[] data;
@@ -31,7 +33,7 @@ public class DynamicArray<E> implements DynamicArrayBehavior<E> {
     @Override
     public boolean add(E e) {
         try {
-            if (data.length < size) {
+            if (data.length <= size) {
                 E[] temp = data;
                 data = (E[]) new Object[size * 2];
                 System.arraycopy(temp, 0, data, 0, temp.length);
@@ -67,7 +69,7 @@ public class DynamicArray<E> implements DynamicArrayBehavior<E> {
 
     @Override
     public int size() {
-        return data.length;
+        return size;
     }
 
     @Override
