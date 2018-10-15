@@ -35,12 +35,12 @@ public class DynamicDoubleArray {
     @Override
     public String toString () {
         StringBuilder s = new StringBuilder();
-        s.append("[ ");
+        s.append("[");
         for (int i = 0; i < size; i++) {
             s.append(data[i]);
             s.append(", ");
         }
-        s.replace(s.length()-1,s.length(),"]");
+        s.replace(s.length()-2,s.length(),"]");
         return s.toString();
     }
 

@@ -13,13 +13,13 @@ public class DynamicArray<E> implements DynamicArrayBehavior<E> {
         dynamicArray.delete(1);
         System.out.println(dynamicArray.get(1));
         System.out.println(dynamicArray.size());
-        DynamicArray<Integer> sss = new DynamicArray<>();
-        sss.add(5);
-        sss.add(4);
-        sss.add(2);
-        sss.add(11);
-        System.out.printf(sss.toString());
-        System.out.println(sss.size);
+        DynamicArray<Integer> dynamicArray2 = new DynamicArray<>();
+        dynamicArray2.add(5);
+        dynamicArray2.add(4);
+        dynamicArray2.add(2);
+        dynamicArray2.add(11);
+        System.out.println(dynamicArray2.toString());
+        System.out.println(dynamicArray2.size());
     }
 
     private E[] data;
@@ -79,6 +79,13 @@ public class DynamicArray<E> implements DynamicArrayBehavior<E> {
 
     @Override
     public String toString() {
-        return Arrays.toString(data);
+        StringBuilder s = new StringBuilder();
+        s.append("[");
+        for (int i = 0; i < size; i++) {
+            s.append(data[i]);
+            s.append(", ");
+        }
+        s.replace(s.length()-2,s.length(),"]");
+        return s.toString();
     }
 }
