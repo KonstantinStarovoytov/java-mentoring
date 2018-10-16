@@ -34,6 +34,7 @@ public class DinnerMaker {
 
     }
 
+    @SafeVarargs
     public static <T extends Product> List<Product> makeDish (String dishName, T... ingredients) {
         List<Product> dish = new ArrayList<>(ingredients.length);
         for (T ingredient : ingredients) {
