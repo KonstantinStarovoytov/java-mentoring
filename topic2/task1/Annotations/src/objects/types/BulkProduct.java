@@ -9,7 +9,7 @@ public abstract class BulkProduct extends Product implements Preparable {
         super(name, weightInGrams, calIn100g,true);
     }
 
-    @Override
+    @Override //Task #1
     public void prepare() {
         System.out.println("Sprinkle dish with : " + getName().toLowerCase());
     }

@@ -1,6 +1,6 @@
 package objects;
 
-@FunctionalInterface
+@FunctionalInterface //Task #1
 public interface Preparable {
     void prepare();
 

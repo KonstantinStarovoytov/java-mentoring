@@ -20,6 +20,7 @@ public class DinnerMaker {
         Instantiate all objects in client code via constructors
         */
         Tomato tomato = (Tomato) ReflectionUtils.addProduct(Tomato.class, 200);
+        Product potato = (Potato) ReflectionUtils.addProduct("objects.Potato", 200);
         /*
         Fill private fields without setters
         */
@@ -29,10 +30,11 @@ public class DinnerMaker {
         /*
         Method reflection call
         */
-        ReflectionUtils.executeMethod(tomato,"prepare");
+        ReflectionUtils.executeMethod(potato,"prepare");
         /*
         Show object meta data via Reflection API
         */
+//        ReflectionUtils.showClassMetaData(tomato);
         ReflectionUtils.showClassMetaData(tomato);
         /*
         Show code marked "ThisCodeSmells" annotation
@@ -40,7 +42,8 @@ public class DinnerMaker {
         CodeSmellsHandler.printVotes("objects.Tomato");
     }
 
-    @SafeVarargs
+
+    @SafeVarargs //Task #1
     @SuppressWarnings("cast")
     public static <T extends Product> List<Product> makeDish(String dishName, T... ingredients) {
         List<Product> dish = new ArrayList<>(ingredients.length);
@@ -57,7 +60,7 @@ public class DinnerMaker {
     For making beet root salad recommended to use
     method "makeDish" with specifying actual ingredients
     */
-    @Deprecated
+    @Deprecated //Task #1
     public static List<Product> makeBeetRootSalad() {
         List<Product> dish = Arrays.asList(new Potato(500),
                 new Parsley(10),
