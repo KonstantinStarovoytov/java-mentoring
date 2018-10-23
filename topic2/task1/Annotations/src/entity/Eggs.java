@@ -1,6 +1,6 @@
-package objects;
+package entity;
 
-import objects.types.SolidProduct;
+import entity.types.SolidProduct;
 
 public class Eggs extends SolidProduct {
     public Eggs (double weightInGrams) {

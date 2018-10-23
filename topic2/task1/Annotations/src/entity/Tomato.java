@@ -1,7 +1,7 @@
-package objects;
+package entity;
 
 import core.annotations.ThisCodeSmells;
-import objects.types.SoftProduct;
+import entity.types.SoftProduct;
 
 @ThisCodeSmells(reviewer = "Starovoytov Konstantin")
 public class Tomato extends SoftProduct {

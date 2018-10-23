@@ -1,9 +1,9 @@
-package objects.types;
+package entity.types;
 
-import core.Utils.ReflectionUtils;
+import core.util.ReflectionUtils;
 import core.annotations.ThisCodeSmells;
-import objects.Product;
-import objects.Preparable;
+import entity.Product;
+import entity.Preparable;
 
 public abstract class SoftProduct extends Product implements Preparable {
 

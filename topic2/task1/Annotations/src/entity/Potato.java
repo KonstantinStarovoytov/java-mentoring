@@ -1,7 +1,7 @@
-package objects;
+package entity;
 
 import core.annotations.ThisCodeSmells;
-import objects.types.SolidProduct;
+import entity.types.SolidProduct;
 
 public class Potato extends SolidProduct {
     @ThisCodeSmells(reviewer = "SKV")

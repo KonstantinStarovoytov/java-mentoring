@@ -1,4 +1,4 @@
-package objects;
+package entity;
 
 import core.annotations.ThisCodeSmells;
 

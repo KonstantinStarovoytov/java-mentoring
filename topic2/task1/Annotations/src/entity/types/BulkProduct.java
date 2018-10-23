@@ -1,7 +1,7 @@
-package objects.types;
+package entity.types;
 
-import objects.Product;
-import objects.Preparable;
+import entity.Product;
+import entity.Preparable;
 
 public abstract class BulkProduct extends Product implements Preparable {
 

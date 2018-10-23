@@ -1,6 +1,6 @@
-package core.Utils;
+package core.util;
 
-import objects.Product;
+import entity.Product;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;

@@ -1,10 +1,7 @@
 package service;
 
-import core.Utils.CodeSmellsHandler;
-import core.Utils.ReflectionUtils;
-import core.annotations.ThisCodeSmells;
 import customException.DishNotReadyException;
-import objects.*;
+import entity.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,34 +11,6 @@ import java.util.stream.Collectors;
 import static java.lang.String.format;
 
 public class DinnerMaker {
-
-    public static void main(String args[]) {
-        /*
-        Instantiate all objects in client code via constructors
-        */
-        Tomato tomato = (Tomato) ReflectionUtils.addProduct(Tomato.class, 200);
-        Product potato = (Potato) ReflectionUtils.addProduct("objects.Potato", 200);
-        /*
-        Fill private fields without setters
-        */
-        System.out.println(tomato.isReady());
-        ReflectionUtils.setReady(tomato,true);
-        System.out.println(tomato.isReady());
-        /*
-        Method reflection call
-        */
-        ReflectionUtils.executeMethod(potato,"prepare");
-        /*
-        Show object meta data via Reflection API
-        */
-//        ReflectionUtils.showClassMetaData(tomato);
-        ReflectionUtils.showClassMetaData(tomato);
-        /*
-        Show code marked "ThisCodeSmells" annotation
-        */
-        CodeSmellsHandler.printVotes("objects.Tomato");
-    }
-
 
     @SafeVarargs //Task #1
     @SuppressWarnings("cast")
@@ -62,7 +31,8 @@ public class DinnerMaker {
     */
     @Deprecated //Task #1
     public static List<Product> makeBeetRootSalad() {
-        List<Product> dish = Arrays.asList(new Potato(500),
+        List<Product> dish = Arrays.asList(
+                new Potato(500),
                 new Parsley(10),
                 new Tomato(300),
                 new Carrot(150),

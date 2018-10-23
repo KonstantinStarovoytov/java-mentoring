@@ -1,6 +1,6 @@
-package objects;
+package entity;
 
-import objects.types.BulkProduct;
+import entity.types.BulkProduct;
 
 public class Parsley extends BulkProduct {
 

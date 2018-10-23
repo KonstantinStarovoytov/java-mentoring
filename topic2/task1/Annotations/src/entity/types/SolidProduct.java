@@ -1,9 +1,8 @@
-package objects.types;
+package entity.types;
 
-import core.Utils.ReflectionUtils;
-import core.annotations.ThisCodeSmells;
-import objects.Product;
-import objects.Preparable;
+import core.util.ReflectionUtils;
+import entity.Product;
+import entity.Preparable;
 
 public abstract class SolidProduct extends Product implements Preparable {
 
