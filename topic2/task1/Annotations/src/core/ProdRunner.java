@@ -21,7 +21,7 @@ public class ProdRunner {
 
     @SuppressWarnings("deprecation")
     @ProdCode
-    public String sdsa() throws DishNotReadyException {
+    public String printBeetRoolSaladCaloriesCount() throws DishNotReadyException {
         List<Product> beetRootSalad = DinnerMaker.makeBeetRootSalad();
         String count = DinnerMaker.countCaloriesInDish(beetRootSalad);
         System.out.println(count);

@@ -1,7 +1,7 @@
 package service;
 
 import customException.DishNotReadyException;
-import objects.*;
+import entity.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,28 +11,6 @@ import java.util.stream.Collectors;
 import static java.lang.String.format;
 
 public class DinnerMaker {
-
-    public static void main(String args[]) {
-        try {
-            showIngredientsWithWeight(makeBeetRootSalad());
-            List<Product> eggPie = makeDish("Eggs pie",
-                    new Eggs(200.5),
-                    new Potato(150),
-                    new Parsley(50.5),
-                    new Beet(200));
-            System.out.println("After sorting by weight: ");
-            showIngredientsWithWeight(eggPie);
-            sortByWeight(eggPie);
-            showIngredientsWithWeight(eggPie);
-            System.out.println(countCaloriesInDish(eggPie));
-            showIngredientsInWeightRange(eggPie,100, 400);
-
-        } catch (DishNotReadyException e) {
-            System.out.println("You dish hasn't been made yet!");
-        }
-
-
-    }
 
     @SafeVarargs
     public static <T extends Product> List<Product> makeDish (String dishName, T... ingredients) {

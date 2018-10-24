@@ -34,7 +34,7 @@ abstract public class Product {
         isReady = ready;
     }
 
-    public int countCaloriesInVegetable() {
+    public final int countCaloriesInVegetable() {
         return (int) (weightInGrams * calIn100g) / 100;
     }
 }
