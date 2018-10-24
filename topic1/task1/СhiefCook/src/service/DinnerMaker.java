@@ -1,6 +1,9 @@
 package service;
 
 import customException.DishNotReadyException;
+import customException.IncorrectProductWeightExeption;
+import customException.IncorrectWeightRangeExeption;
+import customException.ProductNotReadyForCookExeption;
 import entity.*;
 
 import java.util.ArrayList;
@@ -13,10 +16,13 @@ import static java.lang.String.format;
 public class DinnerMaker {
 
     @SafeVarargs
-    public static <T extends Product> List<Product> makeDish (String dishName, T... ingredients) {
+    public static <T extends Product> List<Product> makeDish (String dishName, T... ingredients) throws ProductNotReadyForCookExeption {
         List<Product> dish = new ArrayList<>(ingredients.length);
         for (T ingredient : ingredients) {
             if (ingredient instanceof Preparable) ((Preparable) ingredient).prepare();
+            if(!ingredient.isReady()) {
+                throw new ProductNotReadyForCookExeption(ingredient.getName(), ingredient.getName() + " not ready for cook");
+            }
             dish.add(ingredient);
         }
         System.out.println(dishName + " is ready \n");
@@ -44,15 +50,20 @@ public class DinnerMaker {
         return format("dish has %s calories \n", caloriesAmount);
     }
 
-    public static void showIngredientsWithWeight (List<Product> dish) throws DishNotReadyException {
+    public static void showIngredientsWithWeight (List<Product> dish) throws DishNotReadyException, IncorrectProductWeightExeption {
         if (dish.isEmpty()) throw new DishNotReadyException("You salad hasn't been made yet!");
 
         System.out.println("Ingredients for dish (in grams):");
-        dish.forEach(product -> System.out.println(format("%s = %s grams", product.getName(), product.getWeightInGrams())));
+        for (Product product : dish) {
+            if (product.getWeightInGrams() <= 0)
+                throw new IncorrectProductWeightExeption(product.getWeightInGrams(),"Product has invalid weight value");
+            System.out.println(format("%s = %s grams", product.getName(), product.getWeightInGrams()));
+        }
+
     }
 
     public static void showIngredientsInWeightRange(List<Product> dish, double lowerLimit, double upperLimit)
-            throws DishNotReadyException {
+            throws DishNotReadyException, IncorrectWeightRangeExeption {
         if (dish.isEmpty()) throw new DishNotReadyException("You salad hasn't been made yet!");
 
         System.out.println(format("Ingredients in weight range %s - %s grams", lowerLimit, upperLimit));
@@ -63,7 +74,7 @@ public class DinnerMaker {
         if (!productsInRangeCriteria.isEmpty()) productsInRangeCriteria.forEach(
                 product -> System.out.println(format("%s = %s grams", product.getName(), product.getWeightInGrams())));
         else
-            System.out.println(format("Dish doesn't contains ingredients in weight range : %s grams - %s grams", lowerLimit, upperLimit));
+            throw new IncorrectWeightRangeExeption("Dish doesn't contains ingredients in weight range : %s grams - %s grams",lowerLimit, upperLimit);
     }
 }
 

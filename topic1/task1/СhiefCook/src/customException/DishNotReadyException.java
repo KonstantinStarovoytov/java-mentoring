@@ -1,6 +1,6 @@
 package customException;
 
-public class DishNotReadyException extends Exception {
+public final class DishNotReadyException extends DinnerMakerExeption {
     public DishNotReadyException (String message) {
         super(message);
     }
