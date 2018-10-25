@@ -30,7 +30,11 @@ public class DinnerMaker {
     }
 
     public static List<Product> makeBeetRootSalad () {
-        List<Product> dish = Arrays.asList(new Potato(500), new Parsley(10), new Tomato(300), new Carrot(150), new Beet(400));
+        List<Product> dish = Arrays.asList(new Potato(500),
+                                           new Parsley(10),
+                                           new Tomato(300),
+                                           new Carrot(150),
+                                           new Beet(400));
         dish.forEach(product -> ((Preparable) product).prepare());
         System.out.println("Beetroot salad is ready \n");
         return dish;
