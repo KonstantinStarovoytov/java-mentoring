@@ -1,7 +1,7 @@
 package customException;
 
-public final class IncorrectWeightRangeExeption extends DinnerMakerExeption {
-    public IncorrectWeightRangeExeption(String message, double lowerLimit, double upperLimit) {
+public final class IncorrectWeightRangeException extends DinnerMakerException {
+    public IncorrectWeightRangeException (String message, double lowerLimit, double upperLimit) {
         super(String.format(message, lowerLimit, upperLimit));
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;

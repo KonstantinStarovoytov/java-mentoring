@@ -1,9 +1,9 @@
 package main;
 
 import customException.DishNotReadyException;
-import customException.IncorrectProductWeightExeption;
-import customException.IncorrectWeightRangeExeption;
-import customException.ProductNotReadyForCookExeption;
+import customException.IncorrectProductWeightException;
+import customException.IncorrectWeightRangeException;
+import customException.ProductNotReadyForCookException;
 import entity.*;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class Main {
             System.out.println(countCaloriesInDish(eggPie));
             showIngredientsInWeightRange(eggPie,100, 400);
 
-        } catch (DishNotReadyException | IncorrectWeightRangeExeption | IncorrectProductWeightExeption | ProductNotReadyForCookExeption e) {
+        } catch (DishNotReadyException | IncorrectWeightRangeException | IncorrectProductWeightException | ProductNotReadyForCookException e) {
             System.out.println(e.getMessage());
         }
     }

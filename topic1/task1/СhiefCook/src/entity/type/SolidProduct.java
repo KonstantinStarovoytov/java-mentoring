@@ -6,7 +6,7 @@ import entity.Preparable;
 
 public abstract class SolidProduct extends Product implements Preparable {
 
-    public SolidProduct(Ingredients ingredient, double weightInGrams) {
+    protected SolidProduct(Ingredients ingredient, double weightInGrams) {
         super(ingredient, weightInGrams,false);
     }
 

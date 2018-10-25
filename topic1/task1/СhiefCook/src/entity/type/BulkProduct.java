@@ -6,7 +6,7 @@ import entity.Preparable;
 
 public abstract class BulkProduct extends Product implements Preparable {
 
-    public BulkProduct(Ingredients ingredient, double weightInGrams) {
+    protected BulkProduct(Ingredients ingredient, double weightInGrams) {
         super(ingredient, weightInGrams,true);
     }
 
